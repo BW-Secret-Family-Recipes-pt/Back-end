@@ -12,23 +12,26 @@ function findRecipeById(id) {
 
 function findIngredientsByRecipe(recipe_id) {
     return db('ingredients')
-        .join('recipes', 'recipe_id', 'ingredients.recipe_id')
+        .join('recipes', 'recipes.id', 'ingredients.recipe_id')
         .where({ recipe_id: recipe_id })
-        .select('recipe_name', 'ingredient_name')
+        .select('recipe_id', 'recipe_name', 'ingredient_name')
 }
 
 async function add(recipe) {
-    const [id] = await db('recipes').insert(recipe)
+    const [id] = await db('recipes').insert(recipe, 'id')
     return findRecipeById(id)
 }
 
 async function update(id, changes) {
-    const [id] = await db('recipes').where({ id }).update(changes)
+    const count = await db('recipes')
+        .where({ id })
+        .update(changes)
 
-    return findRecipeById(id)
+    return count ? findRecipeById(id) : undefined;
 }
 
 function remove(id) {
+
     return db('recipes')
         .where({ id })
         .del()

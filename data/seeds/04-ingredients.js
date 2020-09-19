@@ -12,6 +12,12 @@ exports.seed = function (knex) {
           unit_type: "cup",
           ingredient_name: "rice"
         },
+        {
+          recipe_id: 2,
+          quantity: "2",
+          unit_type: "cup",
+          ingredient_name: "brown rice"
+        },
       ]);
     });
 };
