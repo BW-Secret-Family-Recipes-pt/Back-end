@@ -9,29 +9,29 @@ function findIngredientById(id) {
      return db('ingredients').where({ id }).first()
 }
 
-function add(ingredient) {
-     return db('ingredients')
-          .insert(ingredient, 'id')
-          .then(ids => {
-               return findIngredientById(ids[0]);
-          })
+async function add(ingredient) {
+
+    const [id] = await db('ingredients').insert(ingredient, 'id')
+    return findIngredientById(id)
+
 }
 
 function findRecipeById(id) {
      return db('recipes').where({ id }).first()
 }
 
-function update(id, changes) {
-     return db('ingredients').where({ id }).update(changes)
-          .then(ingredient => {
-               return findRecipeById(id)
-          })
+async function update(id, changes) {
+    const count = await db('ingredients')
+        .where({ id })
+        .update(changes)
+
+    return count ? findRecipeById(id) : undefined;
 }
 
 function remove(id) {
-     return db('ingredients')
-          .where({ id })
-          .del()
+    return db('ingredients')
+    .where({ id })
+    .del()
 }
 
 module.exports = {

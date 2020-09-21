@@ -17,6 +17,8 @@ function findIngredientsByRecipe(recipe_id) {
         .select('recipe_id', 'recipe_name', 'ingredient_name')
 }
 
+
+
 async function add(recipe) {
     const [id] = await db('recipes').insert(recipe, 'id')
     return findRecipeById(id)

@@ -4,6 +4,7 @@ const userRouter = require('../users/user-router')
 const authRouter = require('../auth/auth-router')
 const recipeRouter = require('../recipes/recipes-router')
 const restricted = require('../auth/auth-middleware')
+const ingredientRouter = require('../ingredients/ingredients-router')
 
 
 const server = express();
@@ -13,6 +14,7 @@ server.use(express.json());
 server.use('/api', authRouter);
 server.use('/api', userRouter)
 server.use('/api',restricted, recipeRouter)
+server.use('/api', ingredientRouter)
 
 server.use((err, req, res, next)=>{
     console.log(err)
