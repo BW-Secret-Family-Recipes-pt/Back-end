@@ -10,14 +10,6 @@ function findRecipeById(id) {
         .first()
 }
 
-function findIngredientsByRecipe(recipe_id) {
-    return db('ingredients')
-        .join('recipes', 'recipes.id', 'ingredients.recipe_id')
-        .where({ recipe_id: recipe_id })
-        .select('recipe_id', 'recipe_name', 'ingredient_name')
-}
-
-
 
 async function add(recipe) {
     const [id] = await db('recipes').insert(recipe, 'id')
@@ -39,6 +31,51 @@ function remove(id) {
         .del()
 }
 
+// Ingredients
+function findIngredientsByRecipe(recipe_id) {
+    return db('ingredients')
+        .join('recipes', 'recipes.id', 'ingredients.recipe_id')
+        .where({ recipe_id: recipe_id })
+        .select('recipe_id', 'recipe_name', 'ingredient_name')
+}
+
+function findIngredients() {
+    return db('ingredients')
+}
+
+function findIngredientsByRecipe(recipe_id) {
+    return db('ingredients')
+        .join('recipes', 'recipes.id', 'ingredients.recipe_id')
+        .where({ recipe_id: recipe_id })
+        .select('recipe_id', 'recipe_name', 'ingredient_name')
+}
+
+function findIngredientById(id) {
+    return db('ingredients').where({ id }).first()
+}
+
+async function addIngredients(ingredient) {
+
+    const [id] = await db('ingredients').insert(ingredient, 'id')
+   return findIngredientById(id)
+
+}
+
+
+async function updateIngredients(id, changes) {
+   const count = await db('ingredients')
+       .where({ id })
+       .update(changes)
+
+   return count ? findRecipeById(id) : undefined;
+}
+
+function removeIngredients(id) {
+   return db('ingredients')
+   .where({ id })
+   .del()
+}
+
 module.exports = {
     find,
     findRecipeById,
@@ -46,4 +83,9 @@ module.exports = {
     add,
     update,
     remove,
+    addIngredients,
+    removeIngredients,
+    findIngredients,
+    findIngredientById,
+    updateIngredients,
 }

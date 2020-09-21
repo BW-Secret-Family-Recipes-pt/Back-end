@@ -11,8 +11,10 @@ function findIngredientById(id) {
 
 async function add(ingredient) {
 
-    const [id] = await db('ingredients').insert(ingredient, 'id')
-    return findIngredientById(id)
+    // const [id] = await db('ingredients').insert(ingredient, 'id')
+    // return findIngredientById(id)
+
+    return  db('ingredients').insert(ingredient, 'id')
 
 }
 
