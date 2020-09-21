@@ -14,7 +14,7 @@ server.use(express.json());
 server.use('/api', authRouter);
 server.use('/api', userRouter)
 server.use('/api',restricted, recipeRouter)
-server.use('/api', ingredientRouter)
+server.use('/api', restricted, ingredientRouter)
 
 server.use((err, req, res, next)=>{
     console.log(err)
