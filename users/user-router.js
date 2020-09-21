@@ -19,13 +19,18 @@ router.get('/users',  async(req, res, next) => {
 router.get('/users/:id', restricted, async(req, res, next) => {
     
 
-    const user = await Users.findById(req.params.id)
-        if(!user){
-            res.status(404).json({message: 'Could not find user with given id'})
-        }
+    // const user = await Users.findById(req.params.id)
+    //     if(!user){
+    //         res.status(404).json({message: 'Could not find user with given id'})
+    //     }
         
     try {
-        res.status(201).json(user)
+        const user = await Users.findById(req.params.id)
+        if(user){
+            res.status(200).json(user)
+        }else{
+            res.status(404).json({message: 'Could not find user with given id'})
+        }
     } catch (error) {
         next(error)
     }
