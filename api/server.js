@@ -5,11 +5,13 @@ const authRouter = require('../auth/auth-router')
 const recipeRouter = require('../recipes/recipes-router')
 const restricted = require('../auth/auth-middleware')
 const ingredientRouter = require('../ingredients/ingredients-router')
+const cors = require('cors')
 
 
 const server = express();
 
 server.use(helmet());
+server.use(cors())
 server.use(express.json());
 server.use('/api', authRouter);
 server.use('/api', userRouter)
