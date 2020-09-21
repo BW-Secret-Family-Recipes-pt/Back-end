@@ -66,7 +66,7 @@ Requires an authorization header with a JWT. Expects an object with this format 
      "recipe_instructions": "instructions1"
   }
 
-/recipes/:id PUT
+api/recipes/:id PUT
 
 Requires an authorization header with a JWT. Expects an object with this format as the request body:
 
@@ -80,3 +80,37 @@ Requires an authorization header with a JWT. Expects an object with this format 
 /recipes/:id DELETE
 
 Requires an authorization header with a JWT. Deletes the selected recipe if it exists.
+
+api/ingredients GET
+
+Requires an authorization header with a JWT
+
+api/ingredients/:id GET
+
+Requires an authorization header with a JWT
+
+api/ingredients POST
+
+Requires an authorization header with a JWT
+
+{
+  "recipe_id": 1,
+  "quantity": 2,
+  "unit_type": "cup",
+  "ingredient_name": "rice"
+}
+
+api/ingredients/:id Put
+
+Requires an authorization header with a JWT
+
+{
+  "recipe_id": 1,
+  "quantity": 2,
+  "unit_type": "cup",
+  "ingredient_name": "rice"
+}
+
+api/ingredients/:id Delete
+
+Requires an authorization header with a JWT

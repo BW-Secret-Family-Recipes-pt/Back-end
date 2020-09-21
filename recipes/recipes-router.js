@@ -40,6 +40,16 @@ router.get('/recipes/:id/ingredients',  async(req, res, next) => {
     }
 })
 
+router.post('/recipes/:id/ingredients/', async(req, res, next) => {
+    
+    try {
+        const ingredient = await Ingredients.addIngredient(req.body)
+        res.status(201).json(ingredient)
+    } catch (error) {
+        next(error)
+    }
+})
+
 router.post('/recipes', async(req, res, next)=> {
     try {
         const recipe = await Recipes.add(req.body)
