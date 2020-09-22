@@ -18,7 +18,23 @@ const find = () => {
     return db('recipes')
     .join('users', 'users.id', 'recipes.user_id')
     .where({ user_id: id})
-    .select('username', 'title', 'source', 'ingredients', 'instructions', "category")
+    .select('title', 'source', 'ingredients', 'instructions', "category")
+}
+
+async function adduserRecipe(userId, recipe){
+    const [id] = await db('recipes')
+    .join('users', 'users.id', 'recipes.user_id')
+    .insert(recipe)
+    .select('*')
+    .where(userId, recipe.user_id)
+
+    return findByRecipeId(id);
+}
+
+function findByRecipeId(id) {
+    return db('recipes')
+        .where({ id })
+        .first()
 }
 
 const findBy = (filter) => {
@@ -55,4 +71,5 @@ module.exports = {
     update,
     remove,
     findRecipe,
+    adduserRecipe,
 }

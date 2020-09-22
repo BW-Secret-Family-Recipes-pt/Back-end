@@ -49,6 +49,19 @@ router.get('/users/:id/recipes', restricted, async(req, res, next) => {
     }
 })
 
+router.post('/users/:id/recipes', async(req,res, next)=> {
+    try {
+        const recipe = await Users.adduserRecipe(req.params.id, req.body)
+        if(recipe){
+            res.status(200).json(recipe)
+        }else{
+            res.status(400).json({message: "Could not find recipes"})
+        }
+    } catch (error) {
+        next(error)
+    }
+})
+
 router.put('/users/:id', validateUserId, restricted, async(req, res, next) => {
     try {
         const user = await Users.update(req.params.id, req.body)
@@ -68,5 +81,7 @@ router.delete('/users/:id', validateUserId, restricted, async(req, res, next) =>
         next(error)
     }
 })
+
+
 
 module.exports = router;
