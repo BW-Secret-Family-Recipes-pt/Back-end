@@ -62,7 +62,7 @@ PUT api/users/:id Updates selected user
 POST api/login logs in a user
 {
 	"username": "test1",
-	"password": "password"
+	"password": "test123"
 }
 
 ```
@@ -71,6 +71,7 @@ POST api/register registers a user
 {
 	"username": "test1",
 	"password": "password"
+  "email": "email@email.com"
 }
 
 ```
