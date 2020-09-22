@@ -14,6 +14,13 @@ const find = () => {
         .select("id", "username", "email")
 }
 
+ function findRecipe(id){
+    return db('recipes')
+    .join('users', 'users.id', 'recipes.user_id')
+    .where({ user_id: id})
+    .select('username', 'title', 'source', 'ingredients', 'instructions', "category")
+}
+
 const findBy = (filter) => {
     return db("users")
         .select("id", "username", "password", "email")
@@ -47,4 +54,5 @@ module.exports = {
     findById,
     update,
     remove,
+    findRecipe,
 }

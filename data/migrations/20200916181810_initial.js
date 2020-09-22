@@ -8,48 +8,27 @@ exports.up = function (knex) {
           tbl.string('email', 256).notNullable().unique();
        })
        .createTable('recipes', tbl => {
-          tbl.increments();
-          tbl.integer('user_id')
-             .unsigned()
-             .notNullable()
-             .references('id')
-             .inTable('users')
-             .onDelete('CASCADE')
-             .onUpdate('CASCADE');
-          tbl.string('recipe_name', 128).notNullable();
-          tbl.string('source', 128);
-          tbl.text('recipe_instructions').notNullable();
+         //creates a primary key called id
+         tbl.increments();
+         tbl.text('title').notNullable();
+         tbl.text('source').notNullable();
+         tbl.text('ingredients').notNullable();
+         tbl.text('instructions').notNullable();
+         tbl.text('category').notNullable();
+         tbl.integer('user_id')
+           // forces integer to be positive
+           .unsigned()
+           .notNullable()
+           .references('id')
+           // this table must exist already
+           .inTable('users')
+           .onDelete('CASCADE')
+           .onUpdate('CASCADE');
        })
-       .createTable('categories', tbl => {
-          tbl.increments();
-          tbl.integer('recipe_id')
-             .unsigned()
-             .notNullable()
-             .references('id')
-             .inTable('recipes')
-             .onDelete('CASCADE')
-             .onUpdate('CASCADE');
-          tbl.string('category_name', 64);
-       })
-       .createTable('ingredients', tbl => {
-          tbl.increments();
-          tbl.integer('recipe_id')
-             .unsigned()
-             .notNullable()
-             .references('id')
-             .inTable('recipes')
-             .onDelete('CASCADE')
-             .onUpdate('CASCADE');
-          tbl.float('quantity').notNullable();
-          tbl.string('unit_type', 64).notNullable();
-          tbl.string('ingredient_name', 128).notNullable();
-       });
  };
  
  exports.down = function (knex) {
     return knex.schema
-       .dropTableIfExists('ingredients')
-       .dropTableIfExists('categories')
        .dropTableIfExists('recipes')
        .dropTableIfExists('users')
  };

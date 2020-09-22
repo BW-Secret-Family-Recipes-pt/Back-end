@@ -36,6 +36,19 @@ router.get('/users/:id', restricted, async(req, res, next) => {
     }
 })
 
+router.get('/users/:id/recipes', restricted, async(req, res, next) => {
+    try {
+        const recipes = await Users.findRecipe(req.params.id)
+        if(recipes){
+            res.status(200).json(recipes)
+        }else{
+            res.status(400).json({message: "Could not find recipes"})
+        }
+    } catch (error) {
+        next(error)
+    }
+})
+
 router.put('/users/:id', validateUserId, restricted, async(req, res, next) => {
     try {
         const user = await Users.update(req.params.id, req.body)

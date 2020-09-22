@@ -1,116 +1,134 @@
-# Back-end
+<p align="center">
+  <a href="" rel="noopener">
+ <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
+</p>
 
-Secret Family Recipes
+<h3 align="center">Secret Family recipes</h3>
 
-api/register Post
+<div align="center">
 
+[![Status](https://img.shields.io/badge/status-active-success.svg)]()
+[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/pulls)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
+
+</div>
+
+---
+
+<p align="center"> Few lines describing your project.
+    <br> 
+</p>
+
+## 📝 Table of Contents
+
+- [About](#about)
+- [Getting Started](#getting_started)
+- [Deployment](#deployment)
+- [Usage](#usage)
+- [Built Using](#built_using)
+- [TODO](../TODO.md)
+- [Contributing](../CONTRIBUTING.md)
+- [Authors](#authors)
+- [Acknowledgments](#acknowledgement)
+
+## 🧐 About <a name = "about"></a>
+
+
+
+## 🏁 Getting Started <a name = "getting_started"></a>
+
+
+### User Api end points
+
+All requests except register and login are behind authorization with JWT
+
+```
+GET api/users Gets all users
+```
+```
+GET api/users/:id Gets users by id
+```
+```
+GET api/users/:id/recipes Gets recipes from selected user
+```
+```
+DELETE api/users/:id Deletes selected user
+```
+```
+PUT api/users/:id Updates selected user
+```
+```
+POST api/login logs in a user
 {
-	"username": "test",
-	"password": "password",
-	"email": "email@email.com"
-}
-
-api/login Post
-
-{
-	"username": "ryan",
+	"username": "test1",
 	"password": "password"
 }
 
-api/users and api/users/:id Get/Post/Put/Delete
-
-api/recipes GET
-
-Requires an authorization header with a JWT, and will return an array of objects in this format:
-
-[
-  {
-    "id": 1,
-    "user_id": 1,
-    "recipe_name": "recipe1",
-    "source": "source1",
-    "recipe_instructions": "instructions1"
-  },
-  {
-    "id": 2,
-    "user_id": 1,
-    "recipe_name": "recipe2",
-    "source": "source2",
-    "recipe_instructions": "instructions2"
-  }
-]
-
-api/recipes/:id/ingredients GET
-
-Requires an authorization header with a JWT, and will return an array of objects in this format:
-
-[
-  {
-    "recipe_name": "recipe1",
-    "ingredient_name": "brown rice"
-  },
-  {
-    "recipe_name": "recipe1",
-    "ingredient_name": "rice"
-  }
-]
-
-api/recipes POST
-
-Requires an authorization header with a JWT. Expects an object with this format as the request body:
-
-  {
-     "user_id": 1,
-	"recipe_name": "recipe1",
-     "source": "source1",
-     "recipe_instructions": "instructions1"
-  }
-
-api/recipes/:id PUT
-
-Requires an authorization header with a JWT. Expects an object with this format as the request body:
-
-  {
-     "user_id": 1,
-	"recipe_name": "recipe1",
-     "source": "source1",
-     "recipe_instructions": "instructions1"
-  }
-
-/recipes/:id DELETE
-
-Requires an authorization header with a JWT. Deletes the selected recipe if it exists.
-
-api/ingredients GET
-
-Requires an authorization header with a JWT
-
-api/ingredients/:id GET
-
-Requires an authorization header with a JWT
-
-api/ingredients POST
-
-Requires an authorization header with a JWT
-
+```
+```
+POST api/register registers a user
 {
-  "recipe_id": 1,
-  "quantity": 2,
-  "unit_type": "cup",
-  "ingredient_name": "rice"
+	"username": "test1",
+	"password": "password"
 }
 
-api/ingredients/:id Put
+```
 
-Requires an authorization header with a JWT
 
+### Recipe API
+
+A step by step series of examples that tell you how to get a development env running.
+
+Say what the step will be
+
+```
+GET api/recipes Gets all Recipes
+
+```
+```
+GET api/recipes/:id Gets recipe by id
+
+```
+```
+POST api/recipes adds a recipe
 {
-  "recipe_id": 1,
-  "quantity": 2,
-  "unit_type": "cup",
-  "ingredient_name": "rice"
+	        "title": "recipe3",
+					"source": "source3",
+					"ingredients": "ingredients3",
+					"instructions": "instructions3",
+					"category": "category3",
+					"user_id": 1
 }
 
-api/ingredients/:id Delete
+```
 
-Requires an authorization header with a JWT
+```
+PUT api/recipes updates a recipe
+{
+	        "title": "recipe3",
+					"source": "source3",
+					"ingredients": "ingredients3",
+					"instructions": "instructions3",
+					"category": "category3",
+					"user_id": 1
+}
+
+```
+
+```
+DELETE api/recipes deletes a recipe
+
+```
+
+
+## ⛏️ Built Using <a name = "built_using"></a>
+
+- [Express](https://expressjs.com/) - Server Framework
+- [NodeJs](https://nodejs.org/en/) - Server Environment
+
+## ✍️ Authors <a name = "authors"></a>
+
+- [@kylelobo](https://github.com/kylelobo) - Idea & Initial work
+
+
