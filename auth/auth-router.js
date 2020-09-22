@@ -53,21 +53,36 @@ router.post("/register", async (req, res, next) => {
         res.status(401).json({ message: "Invalid password" })
       }
   
-      const token = {
-        userId: user.id,
-        username: user.username
-      }
+      // const token = {
+      //   userId: user.id,
+      //   username: user.username
+      // }
   
-      res.json({
-        message: `Welcome ${user.username}!`,
-        token: jwt.sign(token, process.env.JWT_SECRET),
-      });
+      // res.json({
+      //   message: `Welcome ${user}!`,
+      //   token: jwt.sign(token, process.env.JWT_SECRET,),
+      // });
+      const token = generateToken(user)
+      res.status(200).json({token, user})
+
     }
     catch (err) {
       console.log(err)
       next(err)
     }
   });
+
+  function generateToken(user) {
+    const payload = {
+        subject: user.id,
+        username: user.username
+    }
+
+    const options = {
+        expiresIn: "1d"
+    }
+    return jwt.sign(payload, process.env.JWT_SECRET, options)
+}
 
 
 
