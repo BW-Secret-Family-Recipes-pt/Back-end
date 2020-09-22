@@ -93,12 +93,12 @@ GET api/recipes/:id Gets recipe by id
 ```
 POST api/recipes adds a recipe
 {
-	        "title": "recipe3",
-					"source": "source3",
-					"ingredients": "ingredients3",
-					"instructions": "instructions3",
-					"category": "category3",
-					"user_id": 1
+ "title": "recipe3",
+  "source": "source3",
+	"ingredients": "ingredients3",
+	"instructions": "instructions3",
+	"category": "category3",
+	"user_id": 1
 }
 
 ```
@@ -106,12 +106,12 @@ POST api/recipes adds a recipe
 ```
 PUT api/recipes updates a recipe
 {
-	        "title": "recipe3",
-					"source": "source3",
-					"ingredients": "ingredients3",
-					"instructions": "instructions3",
-					"category": "category3",
-					"user_id": 1
+ "title": "recipe3",
+	"source": "source3",
+	"ingredients": "ingredients3",
+	"instructions": "instructions3",
+	"category": "category3",
+	"user_id": 1
 }
 
 ```
@@ -129,6 +129,6 @@ DELETE api/recipes deletes a recipe
 
 ## ✍️ Authors <a name = "authors"></a>
 
-- [@kylelobo](https://github.com/kylelobo) - Idea & Initial work
+- [@ryan-webdev](https://github.com/ryan-webdev) 
 
 
