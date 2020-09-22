@@ -53,6 +53,17 @@ GET api/users/:id Gets users by id
 GET api/users/:id/recipes Gets recipes from selected user
 ```
 ```
+Post api/users/:id/recipes adds recipe for a user
+{
+ "title": "recipe3",
+  "source": "source3",
+	"ingredients": "ingredients3",
+	"instructions": "instructions3",
+	"category": "category3",
+	"user_id": 1
+}
+```
+```
 DELETE api/users/:id Deletes selected user
 ```
 ```
