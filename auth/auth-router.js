@@ -52,7 +52,7 @@ router.post("/register", async (req, res, next) => {
       if (!validPassword) {
         res.status(401).json({ message: "Invalid password" })
       }
-  
+      const user_id = user.id
       // const token = {
       //   userId: user.id,
       //   username: user.username
@@ -63,7 +63,7 @@ router.post("/register", async (req, res, next) => {
       //   token: jwt.sign(token, process.env.JWT_SECRET,),
       // });
       const token = generateToken(user)
-      res.status(200).json({token, user})
+      res.status(200).json({token, user_id})
 
     }
     catch (err) {
