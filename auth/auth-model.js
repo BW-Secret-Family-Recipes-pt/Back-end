@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs")
 const add = async (user) => {
     
     user.password = await bcrypt.hash(user.password, 13);
-    const [id] = await db("users").insert(user);
+    const [id] = await db("users").insert(user).returning('id');
 
     return findById(id);
 }
@@ -26,6 +26,7 @@ async function adduserRecipe(userId, recipe){
     const [id] = await db('recipes')
     .join('users', 'users.id', 'recipes.user_id')
     .insert(recipe)
+    .returning('id')
     .select('*')
     .where(userId, recipe.user_id)
 
@@ -36,7 +37,7 @@ function findByRecipeId(id) {
     return db('recipes')
         .where({ id })
         .first()
-        
+
 }
 
 const findBy = (filter) => {

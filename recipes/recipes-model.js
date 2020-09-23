@@ -12,7 +12,7 @@ function findById(id) {
 
 async function add(recipe) {
     const [id] = await db('recipes')
-        .insert(recipe)
+        .insert(recipe).returning('id')
     return findById(id)
 }
 
