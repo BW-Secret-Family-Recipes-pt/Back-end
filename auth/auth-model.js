@@ -21,7 +21,7 @@ const find = () => {
     .where({ user_id: id})
     .select('title', 'source', 'ingredients', 'instructions', "category")
 }
-
+//
 async function adduserRecipe(userId, recipe){
     const [id] = await db('recipes')
     .join('users', 'users.id', 'recipes.user_id')
@@ -36,6 +36,7 @@ function findByRecipeId(id) {
     return db('recipes')
         .where({ id })
         .first()
+        
 }
 
 const findBy = (filter) => {
