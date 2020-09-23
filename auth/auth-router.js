@@ -20,12 +20,12 @@ router.post("/register", async (req, res, next) => {
       const user = await Users.findBy({ username }).first()
   
       if (user) {
-        res.status(409).json({ message: "This username is not available" })
+       return res.status(409).json({ message: "This username is not available" })
       }
 
       const user_email = await Users.findBy({email}).first()
       if(user_email){
-        res.status(409).json({message: "This email is not available"})
+        return res.status(409).json({message: "This email is not available"})
       }
 
       res.json(await Users.add(req.body))
@@ -43,14 +43,14 @@ router.post("/register", async (req, res, next) => {
   
       console.log(user)
       if (!user) {
-        res.status(401).json({ message: "Invalid username" })
+       return res.status(401).json({ message: "Invalid username" })
       }
   
       const { password } = req.body
       const validPassword = await bcrypt.compareSync(password, user.password)
   
       if (!validPassword) {
-        res.status(401).json({ message: "Invalid password" })
+       return res.status(401).json({ message: "Invalid password" })
       }
       const user_id = user.id
       // const token = {
